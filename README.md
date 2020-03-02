@@ -1,10 +1,10 @@
 # Doodlepad!
 
-> Our group project for CS473. Ambition is to build a real-time collaborative note-taking app. 
+Our group project for CS473. Ambition is to build a real-time collaborative note-taking app. 
 
 ## Build Setup
 
-> You'll need Node, NPM and a few other things, but first check that you have Node and NPM installed. If you're not sure, run
+You'll need Node, NPM and a few other things, but first check that you have Node and NPM installed. If you're not sure, run
 
 ```bash
 # check Node version
@@ -13,7 +13,7 @@ node -v
 #check npm version
 npm -v
 ```
-> If either of these do not report versions, you'll have to install them. 
+If either of these do not report versions, you'll have to install them. 
 
 Install Node by going here and following the instructions: https://nodejs.org/en/download/
 
