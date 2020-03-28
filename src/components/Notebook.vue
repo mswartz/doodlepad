@@ -1,5 +1,6 @@
 <template>
         <div class="notebook">
+
             <ul>
                 <li v-for="(page, index) of pages" class="page" v-bind:class="{ 'active': index === activePage }" @click="changePage(index)" v-bind:key="index">
                     <div>{{page.title}}</div>
