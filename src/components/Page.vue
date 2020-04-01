@@ -22,18 +22,18 @@ export default {
     name: 'Page',
     props: ['page'],
     methods: {
-    deletePage () {
-        this.$emit('delete-page')
-    },
-    savePage () {
-        this.$emit('save-page')
+        deletePage () {
+            this.$emit('delete-page')
+        },
+        savePage () {
+            this.$emit('save-page')
+        }
+        },
+        data () {
+        return {
+        content: ''
+        }
     }
-    },
-    data () {
-    return {
-      content: ''
-    }
-}
 }
 </script>
 

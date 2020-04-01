@@ -169,6 +169,6 @@
       padding: 20px;
       top: 0;
       right: 0;
-      background-color: rgba(0,0,0,.5);
+      background-color: rgba(127,255,127,.5);
     }
     </style>
