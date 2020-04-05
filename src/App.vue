@@ -1,16 +1,22 @@
+
 <template>
- <div id="app">
-        <div class="nav">
-          <button v-if="!authenticated" @click="login">Login</button>
-          <div v-if="authenticated"> 
-            <button @click="logout">Logout</button>
-            <h1>Hi {{ firstName }}!</h1>
+  <div id="app">
+           <div v-if="!authenticated" class="login-box">
+             <div class="dp-img"></div>
+            <button v-if="!authenticated" @click="login">Login</button>
           </div>
-       </div>
+     
+          <div class="logout-box" v-if="authenticated"> 
+            <button @click="logout">Logout</button>
+            <h1>Hi {{ firstName }}!</h1> 
+          </div>
+        
         <Notebook v-if="authenticated" @change-page="changePage" @new-page="newPage" :pages="pages" :activePage="index" />
         <Page v-if="authenticated" @save-page="savePage" @delete-page="deletePage" :page="pages[index]" />
-    </div>
+    
+  </div>
 </template>
+
 
 <script>
     import Notebook from './components/Notebook'
@@ -150,13 +156,19 @@
     </script>
 
     <style>
+    
     html, body, #app {
         height: 100%;
+
     }
 
+
     body {
-        margin: 0;
-    }
+        margin: 10;
+       
+
+      }
+
 
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -164,11 +176,38 @@
         flex-direction: row;
     }
 
+
+    .login-box{
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 45%;
+      left: 45%;
+      padding: 25px; 
+      background: url(assets/notes.jpg);
+    }
+
+
+    .login-box button {
+      float: left;
+      font-size: 20px;
+      padding: 5px;
+    }
+
+    .dp-img{
+      width: 85px;
+      height: 30px;
+      background-image: url(assets/dp.png);
+      background-size: contain;
+      border-radius: 5px;
+      background-position: center;
+    }
+
     .nav {
       position: absolute;
       padding: 20px;
-      top: 0;
+      top:0;
       right: 0;
-      background-color: rgba(0,0,0,.5);
+      background-color: rgba(0,0,0,.4);
     }
     </style>
