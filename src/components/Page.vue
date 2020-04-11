@@ -42,6 +42,7 @@ export default {
 
         .page {
             width: 100%;
+            margin-top: 100px;
             padding: 2rem;
             box-shadow: 3rem 0 5rem 3rem #c1f5ff;
         }

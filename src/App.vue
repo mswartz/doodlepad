@@ -1,7 +1,7 @@
 
 <template>
   <div id="app">
-   <div class="nav">
+   <div class="nav" v-if="!authenticated">
     <div v-if="!authenticated" class="box" ></div>
     <div v-if="!authenticated" class="login-box">
           <div class="dp-img"></div>
@@ -20,17 +20,39 @@
       <span class="google-button__text">Sign in with Google</span>
       </button>
   </div>
-
-
-
-      <div class="logout-box" v-if="authenticated"> 
-        <button @click="logout">Logout</button>
-          <h1>Hi {{ firstName }}!</h1> 
-      </div>
-</div> 
-<Notebook v-if="authenticated" @change-page="changePage" @new-page="newPage" :pages="pages" :activePage="index" />
-        <Page v-if="authenticated" @save-page="savePage" @delete-page="deletePage" :page="pages[index]" />
   </div>
+
+
+
+        <div class="nav-2" v-if="authenticated">
+        <img id="logo" src="./assets/doodle-logo.png" alt="logo">
+          <div class = "menu">
+        
+            <div id="open-menu" @click="toggle">
+                      <img src="./assets/open-menu.svg" alt="logo">
+
+                      </div>
+            <ul id="list">
+
+              <li>Add Friends</li>
+              <li>Settings</li>
+              <li @click="logout">Log out</li>
+            </ul>
+            <h3>{{ firstName}}</h3>
+          </div>
+
+          
+        </div> 
+
+          <!-- <Notebook v-if="authenticated" @change-page="changePage" @new-page="newPage" :pages="pages" :activePage="index" /> -->
+        <Notebook v-if="authenticated" @change-page="changePage" @new-page="newPage" :pages="pages" :activePage="index" />
+        <Page v-if="authenticated" @save-page="savePage" @delete-page="deletePage" :page="pages[index]" />
+
+
+        </div>
+
+<!--        <Page v-if="authenticated" @save-page="savePage" @delete-page="deletePage" :page="pages[index]" />-->
+ </div>
 </template>
 
 
@@ -79,7 +101,10 @@
         },
         firstName(){
           if (this.user.data.displayName) {
-            return this.user.data.displayName.split(' ')[0]
+            var name = JSON.stringify(this.user.data.displayName.split(' ')[0]).charAt(1);
+           // return this.user.data.displayName.split(' ')[0]
+
+           return name;
           }
           return null
         }
@@ -144,6 +169,14 @@
         },
         insertNewPage (page) {
           page.ref = database.push(page)
+        },
+        toggle () {
+          var x = document.getElementById("list");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
         },
       },
       mounted: function() {
@@ -306,4 +339,95 @@
     background-color: rgba(0,0,0,.5);
     
   }
+
+  /* authenticated style */
+
+    .nav-2{
+      position: absolute;
+      width: 100%;
+      height: 80px;
+      top: 0;
+      right: 0;
+      border-bottom: 1px solid grey;
+    }
+
+    #list {
+      list-style: none;
+      position: absolute;
+      padding: 0;
+      background-color: grey;
+      top:65px;
+      width:130px;
+      display: none;
+      right:0px;
+      display: none;
+    }
+
+    #list > li {
+      padding: 10px;
+      position: relative;
+      cursor: pointer;
+      padding-left: 20px;
+      color: rgb(247, 241, 241);
+ 
+    }
+
+    #list > li:hover {
+      background-color:rgb(141, 141, 141);
+
+    }
+
+    .menu h3 {
+      position: relative;
+      display: inline-block;
+      font-size: 25px;
+      width:50px;
+      height:50px;
+      text-align: center;
+      line-height: 50px;
+      background-color: grey;
+      border-radius: 100%;
+      cursor: pointer;
+      top:-10px;
+      right:15px;
+    }
+
+    .menu {
+      position:absolute;
+      right: 0px;
+    }
+
+    #logo {
+      display:inline-block;
+      position: absolute;
+      top:-60px;
+      left:20px;
+    }
+    #open-menu img {
+      position: absolute;
+      width:25px;
+       top: 50%; 
+       right: 50%;
+     transform: translate(50%,-50%);
+     
+      
+    }
+
+    #open-menu {
+      position: relative;
+      display: inline-block;
+      width:50px;
+      height:50px;
+      border: 1px solid black;
+      border-radius: 100%;
+      cursor: pointer;
+      top:8px;
+      right:20px;
+    }
+
+    .notes {
+      position: absolute;
+      top: 100px;
+    }
+
 </style>

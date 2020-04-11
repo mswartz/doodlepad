@@ -27,8 +27,8 @@
 
     <style scoped>
         .notebook {
-            max-width: 20rem;
-            width: 30rem;
+            width:50%;
+            margin-top: 100px;
             background: #ecfcff;
         }
 
