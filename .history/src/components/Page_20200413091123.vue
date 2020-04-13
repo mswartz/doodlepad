@@ -43,13 +43,11 @@ export default {
 
     }, 
     cancelPage(){
-        document.getElementById("editor").style.display = "none";
-        document.getElementById("page").style.display = "block";
+        
 
     },
     edit () {
-          document.getElementById("editor").style.display = "block";
-        document.getElementById("page").style.display = "none";
+          
   
         },
     

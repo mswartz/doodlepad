@@ -38,18 +38,18 @@ export default {
     },
     savePage () {
         this.$emit('save-page');
-         document.getElementById("editor").style.display = "none";
-        document.getElementById("page").style.display = "block";
+        var editor= document.getElementById("editor");
+          var page = document.getElementById("page");
 
+          editor.style.display = "none";
+          page.style.display = "block";
     }, 
     cancelPage(){
-        document.getElementById("editor").style.display = "none";
-        document.getElementById("page").style.display = "block";
+        
 
     },
     edit () {
-          document.getElementById("editor").style.display = "block";
-        document.getElementById("page").style.display = "none";
+          
   
         },
     
@@ -57,8 +57,13 @@ export default {
     computed: {
         text (){
             
-           return this.page.content;
+           
 
+    }
+    },
+    data () {
+    return {
+      text: this.page.content
     }
     }
 }

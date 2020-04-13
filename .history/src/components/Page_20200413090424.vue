@@ -8,7 +8,7 @@
           </ul>
             <h2 id="title">{{page.title}}</h2>
             <span id="date">  May 11, 2020</span><!-- timestap goes here -->
-        <div id="text" v-html="text"></div>
+        <div id="text" v-html="text">{{page.content}}</div>
             
         </div>
          <div v-if="page" class="page" id="editor">
@@ -38,27 +38,31 @@ export default {
     },
     savePage () {
         this.$emit('save-page');
-         document.getElementById("editor").style.display = "none";
-        document.getElementById("page").style.display = "block";
+        var editor= document.getElementById("editor");
+          var page = document.getElementById("page");
 
+          editor.style.display = "none";
+          page.style.display = "block";
     }, 
     cancelPage(){
-        document.getElementById("editor").style.display = "none";
-        document.getElementById("page").style.display = "block";
+        
 
     },
     edit () {
-          document.getElementById("editor").style.display = "block";
-        document.getElementById("page").style.display = "none";
+          
   
         },
     
     },
     computed: {
         text (){
-            
-           return this.page.content;
+           
 
+    }
+    },
+    data () {
+    return {
+      text: this.page.content
     }
     }
 }

@@ -38,26 +38,34 @@ export default {
     },
     savePage () {
         this.$emit('save-page');
-         document.getElementById("editor").style.display = "none";
-        document.getElementById("page").style.display = "block";
+        var editor= document.getElementById("editor");
+          var page = document.getElementById("page");
 
+          editor.style.display = "none";
+          page.style.display = "block";
+    },
+     data () {
+    return {
+      content: ''
+    }
     }, 
     cancelPage(){
-        document.getElementById("editor").style.display = "none";
-        document.getElementById("page").style.display = "block";
+        
 
     },
     edit () {
-          document.getElementById("editor").style.display = "block";
-        document.getElementById("page").style.display = "none";
+          
   
         },
     
     },
     computed: {
         text (){
+            var parent = document.getElementById("page");
+            var div = document.createElement("div");
+            div.innerHTML = this.page.content;
             
-           return this.page.content;
+            parent.appendChild(div);
 
     }
     }
