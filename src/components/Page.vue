@@ -7,7 +7,7 @@
             <li><img id="delete" @click="deletePage()"  src="@/assets/delete.png" alt="delete"></li>
           </ul>
             <h2 id="title">{{page.title}}</h2>
-            <span id="date">  May 11, 2020</span><!-- timestap goes here -->
+            <span id="date">{{page.timestamp}} by {{page.author}}</span>
         <div id="text" v-html="text"></div>
             
         </div>

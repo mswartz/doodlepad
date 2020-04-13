@@ -137,9 +137,16 @@
             console.log(error)});
         },
         newPage () {
+          var d = new Date();
+          var datestring = d.getDate()  + "-" + (d.getMonth()+1) + "-" + d.getFullYear() + " " +
+d.getHours() + ":" + d.getMinutes();
+
+
           this.pages.push({
             title: '',
-            content: ''
+            content: '',
+            timestamp: datestring,
+            author: this.user.data.displayName
           })
           this.index = this.pages.length - 1
         },
