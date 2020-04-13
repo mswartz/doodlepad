@@ -410,6 +410,7 @@
       position: absolute;
       top: 10px;
       left:20px;
+      background-color: red;
     }
     #open-menu img {
       position: absolute;
