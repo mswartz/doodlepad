@@ -408,8 +408,10 @@
     #logo {
       display:inline-block;
       position: absolute;
-      top: 10px;
+      //top:-60px;
       left:20px;
+      background-color: red;
+      height: 30px;
     }
     #open-menu img {
       position: absolute;
