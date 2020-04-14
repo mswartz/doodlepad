@@ -1,8 +1,8 @@
 <template>
         <div class="notebook">
-
+            <Search :pages="pages" @filtered-pages="applyPages"/>
             <ul>
-                <li v-for="(page, index) of pages" class="page" v-bind:class="{ 'active': index === activePage }" @click="changePage(index)" v-bind:key="index">
+                <li v-for="(page, index) in filteredPages" class="page" v-bind:class="{ 'active': index === activePage }" @click="changePage(index)" v-bind:key="index">
                     <div>{{page.title}}</div>
                 </li>
                 <li class="new-page" @click="newPage()">New Page +</li>
@@ -11,20 +11,36 @@
     </template>
 
     <script>
+import Search from "@/components/Search.vue";
       export default {
+        components: { Search },
+        data: function(){
+            return {
+                filteredPages:[]
+            }
+        },
+        mounted: function(){
+    this.filteredPages = JSON.parse(JSON.stringify(this.pages));
+            
+        },
+        watch:{
+            pages(newV,oldV){
+                this.filteredPages = JSON.parse(JSON.stringify(this.pages));
+            }
+        },
         name: 'Notebook',
         props: ['pages', 'activePage'],
         methods: {
+        applyPages: function(event){
+             console.log(event)
+             this.filteredPages=event.pages;
+             console.log(this.filteredPages)
+        },
           changePage (index) {
             this.$emit('change-page', index)
           },
           newPage () {
-            this.$emit('new-page');
-            var editor= document.getElementById("editor");
-          var page = document.getElementById("page");
-
-          editor.style.display = "block";
-          page.style.display = "none";
+            this.$emit('new-page')
           }
         }
       }
@@ -75,7 +91,7 @@
         .new-page {
             background-color: #233b5d;
             color: white;
-            position: absolute;
+            //position: absolute;
             bottom: 0;
             width: 100%;
             box-sizing: border-box;
