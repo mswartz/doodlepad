@@ -168,9 +168,16 @@ d.getHours() + ":" + d.getMinutes();
           this.index = Math.max(this.index - 1, 0)
         },
         updateExistingPage (page) {
+          var d = new Date();
+          var datestring = d.getDate()  + "-" + (d.getMonth()+1) + "-" + d.getFullYear() + " " +
+d.getHours() + ":" + d.getMinutes();
+
           page.ref.update({
             title: page.title,
-            content: page.content
+            content: page.content,
+            timestamp: datestring,
+            author: page.author,
+            lastMod: this.user.data.displayName
           })
         },
         insertNewPage (page) {
@@ -191,7 +198,9 @@ d.getHours() + ":" + d.getMinutes();
             this.pages.push({
               ref: page.ref,
               title: page.child('title').val(),
-              content: page.child('content').val()
+              content: page.child('content').val(),
+              timestamp: page.child('timestamp').val(),
+              author: page.child('author').val()
             })
           })
         });
