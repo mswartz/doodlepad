@@ -12,6 +12,7 @@
 
     <script>
 import Search from "@/components/Search.vue";
+
       export default {
         components: { Search },
         data: function(){
@@ -20,7 +21,7 @@ import Search from "@/components/Search.vue";
             }
         },
         mounted: function(){
-    this.filteredPages = JSON.parse(JSON.stringify(this.pages));
+        this.filteredPages = JSON.parse(JSON.stringify(this.pages));
             
         },
         watch:{
@@ -32,15 +33,20 @@ import Search from "@/components/Search.vue";
         props: ['pages', 'activePage'],
         methods: {
         applyPages: function(event){
-             console.log(event)
+            
              this.filteredPages=event.pages;
-             console.log(this.filteredPages)
+            this.$emit('update-list', this.filteredPages);
+
+            
         },
           changePage (index) {
-            this.$emit('change-page', index)
+            this.$emit('change-page', index);
+            
           },
           newPage () {
             this.$emit('new-page')
+            document.getElementById("editor").style.display = "block";
+        document.getElementById("page").style.display = "none";
           }
         }
       }
@@ -54,7 +60,7 @@ import Search from "@/components/Search.vue";
             background:#ecfcff;
             position: relative;
             right:10px;
-                overflow: hidden;
+            overflow: hidden;
 
         }
 
@@ -91,7 +97,7 @@ import Search from "@/components/Search.vue";
         .new-page {
             background-color: #233b5d;
             color: white;
-            //position: absolute;
+        
             bottom: 0;
             width: 100%;
             box-sizing: border-box;
