@@ -19,7 +19,7 @@
             <button @click="cancelPage()">Cancel</button>
         </div>
         <div v-else>
-            <h1>&larr; To start, create a new page!</h1>
+            <h1>&larr;Select a Note</h1>
         </div>
     </div>
    
@@ -27,6 +27,7 @@
 
 <script>
 import SimpleEditor from '@/components/SimpleEditor.vue'
+import NotebookVue from './Notebook.vue';
 
 export default {
     components: { SimpleEditor },
@@ -51,7 +52,7 @@ export default {
           document.getElementById("editor").style.display = "block";
         document.getElementById("page").style.display = "none";
   
-        },
+        }
     
     },
     computed: {
@@ -151,7 +152,7 @@ export default {
             font-style: italic;
             display: block;
             margin-bottom: 15px;
-            width: 100px;
+            width: 250px;
             padding-bottom: 10px;
             border-bottom: 1px dotted black;
         }

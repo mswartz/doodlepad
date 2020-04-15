@@ -38,20 +38,20 @@
               <li @click="logout"><img src="./assets/logOut.png" alt="logo">Log out</li>
             </ul>
             <h3>{{ firstName}}</h3>
+      
           </div>
 
           
-        </div> 
+        </div > 
 
-          <!-- <Notebook v-if="authenticated" @change-page="changePage" @new-page="newPage" :pages="pages" :activePage="index" /> -->
-         <Notebook v-if="authenticated" @change-page="changePage" @new-page="newPage" :pages="pages" :activePage="index" />
-       <Page v-if="authenticated" @save-page="savePage" @delete-page="deletePage" :page="pages[index]"/>
-
+         <Notebook v-if="authenticated"  @update-list="listUpdate"  @change-page="changePage" @new-page="newPage" :pages="pages" :activePage="index" />
+         <Page v-if="authenticated && filteredPages == undefined" @save-page="savePage" @delete-page="deletePage" :page="pages[index]" />
+                <Page v-else-if="authenticated && filteredPages != undefined" @save-page="savePage" @delete-page="deletePage" :page="filteredPages[index]" />
+                
 
         </div>
 
 
-<!--        <Page v-if="authenticated" @save-page="savePage" @delete-page="deletePage" :page="pages[index]" />-->
 </template>
 
 
@@ -81,10 +81,11 @@
 
     export default {
       name: 'app',
+      props: ['filteredPages'],
       components: {
         Notebook,
         Page
-      },
+              },
       data: () => ({
         pages: [],
         index: 0,
@@ -109,6 +110,12 @@
         }
       },
       methods: {
+         listUpdate(list){
+          this.filteredPages = list;
+          console.log("yaaaaay");
+
+        }
+      ,
         login() {
           var vm = this;
           const provider = new firebase.auth.GoogleAuthProvider();
@@ -184,13 +191,14 @@ d.getHours() + ":" + d.getMinutes();
           page.ref = database.push(page)
         },
         toggle () {
+        
           var x = document.getElementById("list");
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
     x.style.display = "none";
   }
-        },
+        }
       },
       mounted: function() {
         database.once('value', (pages) => {
