@@ -1,5 +1,6 @@
 <template>
         <div class="notebook">
+<<<<<<< HEAD
             <button id="new-page" @click="newPage()">New Page +</button>
             <input id="search" type="text" v-model="search" placeholder="Search" autocomplete="off"/>
 
@@ -7,11 +8,20 @@
                 <li v-for="(page, index) of filteredList" class="page" @click="changePage(page)"  v-bind:class="{ 'active': pages.indexOf(page) === activePage }" v-bind:key="index">
                     <div>{{page.title}}</div>
                 </li>
+=======
+            <Search :pages="pages" @filtered-pages="applyPages"/>
+            <ul>
+                <li v-for="(page, index) in filteredPages" class="page" v-bind:class="{ 'active': index === activePage }" @click="changePage(index)" v-bind:key="index">
+                    <div>{{page.title}}</div>
+                </li>
+                <li class="new-page" @click="newPage()">New Page +</li>
+>>>>>>> 89e568510910387df211ecc2fb5a7f0163041272
             </ul>
         </div>
     </template>
 
     <script>
+<<<<<<< HEAD
       export default {
         name: 'Notebook',
         props: ['pages', 'activePage'],
@@ -49,6 +59,45 @@
     
                 });
             }
+=======
+import Search from "@/components/Search.vue";
+
+      export default {
+        components: { Search },
+        data: function(){
+            return {
+                filteredPages:[]
+            }
+        },
+        mounted: function(){
+        this.filteredPages = JSON.parse(JSON.stringify(this.pages));
+            
+        },
+        watch:{
+            pages(newV,oldV){
+                this.filteredPages = JSON.parse(JSON.stringify(this.pages));
+            }
+        },
+        name: 'Notebook',
+        props: ['pages', 'activePage'],
+        methods: {
+        applyPages: function(event){
+            
+             this.filteredPages=event.pages;
+            this.$emit('update-list', this.filteredPages);
+
+            
+        },
+          changePage (index) {
+            this.$emit('change-page', index);
+            
+          },
+          newPage () {
+            this.$emit('new-page')
+            document.getElementById("editor").style.display = "block";
+        document.getElementById("page").style.display = "none";
+          }
+>>>>>>> 89e568510910387df211ecc2fb5a7f0163041272
         }
       }
     </script>
@@ -56,6 +105,7 @@
     <style scoped>
         .notebook {
             width:35%;
+<<<<<<< HEAD
             margin-top: 71px;
             display: inline-block;
             background-color:#e5e5e5;
@@ -85,6 +135,17 @@
 
 
 
+=======
+            margin-top: 73px;
+            display: inline-block;
+            background:#ecfcff;
+            position: relative;
+            right:10px;
+            overflow: hidden;
+
+        }
+
+>>>>>>> 89e568510910387df211ecc2fb5a7f0163041272
         ul {
             list-style-type: none;
             padding: 0;
@@ -95,7 +156,11 @@
 
         li {
             padding: 1rem;
+<<<<<<< HEAD
             font-size: 20px;
+=======
+            font-size: 1.25rem;
+>>>>>>> 89e568510910387df211ecc2fb5a7f0163041272
             min-height: 1.5rem;
             white-space: nowrap;
             overflow: hidden;
@@ -104,6 +169,7 @@
 
         li:hover {
             cursor: pointer;
+<<<<<<< HEAD
             background-color: #AAAAAA;
         }
 
@@ -135,6 +201,30 @@
             cursor: pointer;
 
             
+=======
+            background-color: #c5edf5;
+        }
+
+        .active {
+            background-color: #80cee0;
+        }
+
+        .active:hover {
+            background-color: #5caec1;
+        }
+
+        .new-page {
+            background-color: #233b5d;
+            color: white;
+        
+            bottom: 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .new-page:hover {
+            background-color: #182c48;
+>>>>>>> 89e568510910387df211ecc2fb5a7f0163041272
         }
     </style>
 	

@@ -38,6 +38,7 @@
               <li @click="logout"><img src="./assets/logOut.png" alt="logo">Log out</li>
             </ul>
             <h3>{{ firstName}}</h3>
+<<<<<<< HEAD
           </div>
 
           
@@ -48,11 +49,26 @@
        <Page v-if="authenticated" @save-page="savePage" @delete-page="deletePage" :page="pages[index]"/>
 
 
+=======
+      
+          </div>
+
+          
+        </div > 
+
+         <Notebook v-if="authenticated"  @update-list="listUpdate"  @change-page="changePage" @new-page="newPage" :pages="pages" :activePage="index" />
+         <Page v-if="authenticated && filteredPages == undefined" @save-page="savePage" @delete-page="deletePage" :page="pages[index]" />
+                <Page v-else-if="authenticated && filteredPages != undefined" @save-page="savePage" @delete-page="deletePage" :page="filteredPages[index]" />
+                
+>>>>>>> 89e568510910387df211ecc2fb5a7f0163041272
 
         </div>
 
 
+<<<<<<< HEAD
 <!--        <Page v-if="authenticated" @save-page="savePage" @delete-page="deletePage" :page="pages[index]" />-->
+=======
+>>>>>>> 89e568510910387df211ecc2fb5a7f0163041272
 </template>
 
 
@@ -82,10 +98,18 @@
 
     export default {
       name: 'app',
+<<<<<<< HEAD
       components: {
         Notebook,
         Page
       },
+=======
+      props: ['filteredPages'],
+      components: {
+        Notebook,
+        Page
+              },
+>>>>>>> 89e568510910387df211ecc2fb5a7f0163041272
       data: () => ({
         pages: [],
         index: 0,
@@ -110,11 +134,20 @@
         }
       },
       methods: {
+<<<<<<< HEAD
         showPage(input){
         this.index = this.pages.indexOf(input);
 
         },
         
+=======
+         listUpdate(list){
+          this.filteredPages = list;
+          console.log("yaaaaay");
+
+        }
+      ,
+>>>>>>> 89e568510910387df211ecc2fb5a7f0163041272
         login() {
           var vm = this;
           const provider = new firebase.auth.GoogleAuthProvider();
@@ -141,6 +174,7 @@
           })
           .catch(function(error) {
             console.log(error)});
+<<<<<<< HEAD
 
         },
         newPage () {
@@ -151,6 +185,26 @@
           this.index = this.pages.length - 1
         },
         
+=======
+        },
+        newPage () {
+          var d = new Date();
+          var datestring = d.getDate()  + "-" + (d.getMonth()+1) + "-" + d.getFullYear() + " " +
+d.getHours() + ":" + d.getMinutes();
+
+
+          this.pages.push({
+            title: '',
+            content: '',
+            timestamp: datestring,
+            author: this.user.data.displayName
+          })
+          this.index = this.pages.length - 1
+        },
+        changePage (index) {
+          this.index = index
+        },
+>>>>>>> 89e568510910387df211ecc2fb5a7f0163041272
         savePage () {
            var page = this.pages[this.index]
             if (page.ref) {
@@ -166,22 +220,43 @@
           this.index = Math.max(this.index - 1, 0)
         },
         updateExistingPage (page) {
+<<<<<<< HEAD
           page.ref.update({
             title: page.title,
             content: page.content
+=======
+          var d = new Date();
+          var datestring = d.getDate()  + "-" + (d.getMonth()+1) + "-" + d.getFullYear() + " " +
+d.getHours() + ":" + d.getMinutes();
+
+          page.ref.update({
+            title: page.title,
+            content: page.content,
+            timestamp: datestring,
+            author: page.author,
+            lastMod: this.user.data.displayName
+>>>>>>> 89e568510910387df211ecc2fb5a7f0163041272
           })
         },
         insertNewPage (page) {
           page.ref = database.push(page)
         },
         toggle () {
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 89e568510910387df211ecc2fb5a7f0163041272
           var x = document.getElementById("list");
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
     x.style.display = "none";
   }
+<<<<<<< HEAD
         },
+=======
+        }
+>>>>>>> 89e568510910387df211ecc2fb5a7f0163041272
       },
       mounted: function() {
         database.once('value', (pages) => {
@@ -189,7 +264,13 @@
             this.pages.push({
               ref: page.ref,
               title: page.child('title').val(),
+<<<<<<< HEAD
               content: page.child('content').val()
+=======
+              content: page.child('content').val(),
+              timestamp: page.child('timestamp').val(),
+              author: page.child('author').val()
+>>>>>>> 89e568510910387df211ecc2fb5a7f0163041272
             })
           })
         });
@@ -198,7 +279,10 @@
           console.log("auth state changed");
           this.user.loggedIn = true;
           this.user.data = user;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 89e568510910387df211ecc2fb5a7f0163041272
         }
         else {
           this.user.loggedIn = false;
@@ -225,7 +309,10 @@
     display: block; 
     padding: 0px;
     margin:0px;
+<<<<<<< HEAD
     width:100%;
+=======
+>>>>>>> 89e568510910387df211ecc2fb5a7f0163041272
 
   }
 

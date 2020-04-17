@@ -7,7 +7,11 @@
             <li><img id="delete" @click="deletePage()"  src="@/assets/delete.png" alt="delete"></li>
           </ul>
             <h2 id="title">{{page.title}}</h2>
+<<<<<<< HEAD
             <span id="date">  May 11, 2020</span><!-- timestap goes here -->
+=======
+            <span id="date">{{page.timestamp}} by {{page.author}}</span>
+>>>>>>> 89e568510910387df211ecc2fb5a7f0163041272
         <div id="text" v-html="text"></div>
             
         </div>
@@ -19,7 +23,11 @@
             <button @click="cancelPage()">Cancel</button>
         </div>
         <div v-else>
+<<<<<<< HEAD
             <h1>&larr; To start, create a new page!</h1>
+=======
+            <h1>&larr;Select a Note</h1>
+>>>>>>> 89e568510910387df211ecc2fb5a7f0163041272
         </div>
     </div>
    
@@ -27,6 +35,10 @@
 
 <script>
 import SimpleEditor from '@/components/SimpleEditor.vue'
+<<<<<<< HEAD
+=======
+import NotebookVue from './Notebook.vue';
+>>>>>>> 89e568510910387df211ecc2fb5a7f0163041272
 
 export default {
     components: { SimpleEditor },
@@ -51,7 +63,11 @@ export default {
           document.getElementById("editor").style.display = "block";
         document.getElementById("page").style.display = "none";
   
+<<<<<<< HEAD
         },
+=======
+        }
+>>>>>>> 89e568510910387df211ecc2fb5a7f0163041272
     
     },
     computed: {
@@ -74,7 +90,10 @@ export default {
             position: absolute;
             top:80px;
             right:0px;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 89e568510910387df211ecc2fb5a7f0163041272
         }
         .page {
             width: 100%;
@@ -152,7 +171,11 @@ export default {
             font-style: italic;
             display: block;
             margin-bottom: 15px;
+<<<<<<< HEAD
             width: 100px;
+=======
+            width: 250px;
+>>>>>>> 89e568510910387df211ecc2fb5a7f0163041272
             padding-bottom: 10px;
             border-bottom: 1px dotted black;
         }
