@@ -151,7 +151,7 @@ export default {
             font-style: italic;
             display: block;
             margin-bottom: 15px;
-            width: 300px;
+            width: 250px;
             padding-bottom: 10px;
             border-bottom: 1px dotted black;
         }
