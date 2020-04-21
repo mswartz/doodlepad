@@ -200,7 +200,9 @@ d.getHours() + ":" + d.getMinutes();
             this.pages.push({
               ref: page.ref,
               title: page.child('title').val(),
-              content: page.child('content').val()
+              content: page.child('content').val(),
+              author: page.child('author').val(),
+              timestamp: page.child('timestamp').val()
             })
           })
         });
