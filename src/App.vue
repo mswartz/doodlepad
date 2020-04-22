@@ -24,7 +24,7 @@
 
 
         <div class="nav-2" v-if="authenticated">
-        <img id="logo" src="./assets/doodle-logo.png" alt="logo">
+        <img id="logo" src="./assets/dp.gif" alt="logo">
           <div class = "menu">
         
             <div id="open-menu" @click="toggle">
@@ -231,44 +231,54 @@ d.getHours() + ":" + d.getMinutes();
 
 
     
+/* Animation for fade-in effect */
+.notebook, .display, .nav-2, .login-box {
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 2s; /* Firefox < 16 */
+        -ms-animation: fadein 2s; /* Internet Explorer */
+         -o-animation: fadein 2s; /* Opera < 12.1 */
+            animation: fadein 2s;
+}
 
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+
+/* Google fonts import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;900&display=swap');
 
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: 'Inter', Helvetica, Arial, sans-serif;
     display: block; 
     width:100%;
-
+    background-color: rgba(255, 255, 255, 1);
   }
-
-  /*.logout-box {
-    margin-top: 0%;
-    margin-bottom: 0%;
-    margin-left: 89%;
-    display: block;
-    font-size: larger;
-    font-weight: bold;
-    position: absolute;
-  }
-
-  .logout-box button {
-    margin-top: 0%;
-    margin-bottom: 0%;
-    margin-left: 8%;
-    display: block;
-    font-size: small;
-    font-weight: bold;
-    position: absolute;
-  }
-
-  .logout-box h1 {
-    margin-top: 20px;
-    margin-bottom: 0%;
-    margin-left: 16px;
-    font-size: larger;
-    font-weight: bold;
-    position: absolute;
-    background-color: rgba(0,0,0,.5);
-  }*/
 
   .box{
     width: 110%;
@@ -280,15 +290,18 @@ d.getHours() + ":" + d.getMinutes();
     transform: translate(-48%,-45%);
     background-size:cover;
     background-repeat: no-repeat;
+    opacity: .2;
   } 
       
   .login-box{
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px rgba(0,0,0,.5);
     padding: 25px;   
-    width: 320px;
-    height: 220px;
+    width: 420px;
+    height: 270px;
     top: 55%;
     left: 53%;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,1);
     color: #fff;
     position: fixed;
     transform: translate(-50%,-50%);
@@ -296,22 +309,29 @@ d.getHours() + ":" + d.getMinutes();
   }
 
 .login-box button {
+    background-color: #000;
     font-size: 5px;
     padding: 10px;
     width: 70%;
     height: 30%;
-    margin-left: 13%;
+    margin-left: 14%;
     margin-right: 0%;
-    margin-top: 20%;
+    margin-top: 5%;
     text-align: center;
-    border-bottom-width: 3px;
-    border-right-width: 2px;   
+    border: 1px solid #FFF;
+    color: #FFF;
+    cursor: pointer;
+  }
+
+  .login-box button:hover {
+    border-color: rgb(58, 0, 216);
+        cursor: pointer;
   }
 
 .dp-img{
-    width: 260px;
-    height: 60px;
-    background-image: url(assets/dp.png);
+    width: 360px;
+    height: 100px;
+    background-image: url(assets/dp.gif);
     background-size: cover;
     border-radius: 5px;
     background-position: center;
@@ -368,7 +388,7 @@ d.getHours() + ":" + d.getMinutes();
       top: 0;
       right: 0;
       z-index: 1;
-      border-bottom: 1px solid grey;
+      background-color: #000;
     }
 
     .list {
@@ -412,7 +432,8 @@ d.getHours() + ":" + d.getMinutes();
       height:50px;
       text-align: center;
       line-height: 50px;
-      background-color: grey;
+      background-color: #222;
+      font-weight: 100;
       border-radius: 100%;
       cursor: pointer;
       top:-10px;
@@ -430,6 +451,7 @@ d.getHours() + ":" + d.getMinutes();
       position: absolute;
       top: 10px;
       left:20px;
+      height: 70px;
     }
     #open-menu img {
       position: absolute;
@@ -446,7 +468,7 @@ d.getHours() + ":" + d.getMinutes();
       display: inline-block;
       width:50px;
       height:50px;
-      border: 1px solid black;
+      border: 1px solid white;
       border-radius: 100%;
       cursor: pointer;
       top:8px;
@@ -457,10 +479,24 @@ d.getHours() + ":" + d.getMinutes();
       position: absolute;
       top: 100px;
     }
-    .darkBlue{
-      background-color: #2f3542;
+
+    body.darkBlue #app{
+      background-color: #1d1d1d;
       color:#d8d4d4;
     }
+
+    body.darkBlue #app .display {
+      background-color: #1d1d1d;
+    }
+
+      body.darkBlue #app .notebook {
+      box-shadow: none;
+    }
+
+          body.darkBlue #app .notebook #search {
+      background-color: #222;
+    }
+
 
     .lighterBlue {
       background-color: #57606f;
