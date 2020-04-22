@@ -72,11 +72,13 @@ export default {
             display: inline-block;
             padding: 2rem;
             position: absolute;
-            top:80px;
+            height: 85%;
+            top: 80px;
             right:0px;
+            background: #FFF;;
         }
+
         .page {
-            width: 100%;
             padding: 2rem;
         }
 
@@ -140,6 +142,7 @@ export default {
         }
         .actions li img {
             padding: 5px;
+            border-radius: 20px;
             border: 1px solid black;
         }
         .actions li img:hover {
@@ -149,7 +152,6 @@ export default {
 
         #date {
             font-size: 13px;
-            font-style: italic;
             display: block;
             margin-bottom: 15px;
             width: 300px;
@@ -159,6 +161,9 @@ export default {
 
         #title {
             margin-bottom: 0px;
+            font-size: 2rem;
+            font-weight: 100;
+            margin-bottom: 20px;
         }
 
         #editor {
@@ -170,11 +175,19 @@ export default {
 
         #editor button {
             margin-top: 50px;
-            background-color: #485460;
+           background-color: rgb(59, 22, 163);
+           padding: 5px 20px;
+           height: 40px;
+            border-radius: 100px;
+            border: 0;
+        }
+
+        #editor button:hover {
+            background-color: rgb(58, 0, 216);
         }
 
         #editor input {
-            width: 90%;
+            /*width: 90%;*/
         }
 
 
