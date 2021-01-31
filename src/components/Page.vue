@@ -1,17 +1,28 @@
 <template>
-    <div class="page">
-        <div v-if="page">
-            <label for="title">Title</label>
-            <input type="text" v-model="page.title" class="title" name="title" placeholder="Enter a title" />
+    <div class="display">
+        <div v-if="page" id="page">
+            <ul class= "actions">
+            <li><img id="edit" @click="edit()" src="@/assets/edit.png" alt="edit"></li>
+            <li><img id="share"   src="@/assets/share.png" alt="share"></li>
+            <li><img id="delete" @click="deletePage()"  src="@/assets/delete.png" alt="delete"></li>
+          </ul>
+            <h2 id="title">{{page.title}}</h2>
+            <span id="date">{{page.timestamp}} by {{page.author}}</span>
+        <div id="text" v-html="text"></div>
             
-            <simple-editor v-model="page.content" name="content"></simple-editor>
-            <button @click="deletePage()">Delete Page</button>
-            <button @click="savePage()">Save Page</button>
+        </div>
+         <div v-if="page" class="page" id="editor">
+            <input type="text" v-model="page.title" class="title" name="title" placeholder="Enter a title" />
+            <simple-editor id ="simple" v-model="page.content" name="content"></simple-editor>
+
+            <button @click="savePage()">Save</button>
+            <button @click="cancelPage()">Cancel</button>
         </div>
         <div v-else>
             <h1>&larr; To start, create a new page!</h1>
         </div>
     </div>
+   
 </template>
 
 <script>
@@ -26,24 +37,49 @@ export default {
         this.$emit('delete-page')
     },
     savePage () {
-        this.$emit('save-page')
-    }
+        this.$emit('save-page');
+         document.getElementById("editor").style.display = "none";
+        document.getElementById("page").style.display = "block";
+
+    }, 
+    cancelPage(){
+        document.getElementById("editor").style.display = "none";
+        document.getElementById("page").style.display = "block";
+
     },
-    data () {
-    return {
-      content: ''
+    edit () {
+          document.getElementById("editor").style.display = "block";
+        document.getElementById("page").style.display = "none";
+  
+        },
+    
+    },
+    computed: {
+        text (){
+            
+           return this.page.content;
+
     }
-}
+    }
 }
 </script>
 
  <style scoped>
         @import url("https://cdn.quilljs.com/1.2.6/quill.snow.css");
 
-        .page {
-            width: 100%;
+        .display {
+            width: 60%;
+            display: inline-block;
             padding: 2rem;
-            box-shadow: 3rem 0 5rem 3rem #c1f5ff;
+            position: absolute;
+            height: 85%;
+            top: 80px;
+            right:0px;
+            background: #FFF;;
+        }
+
+        .page {
+            padding: 2rem;
         }
 
         .content, .title {
@@ -80,15 +116,79 @@ export default {
         button {
             border-style: none;
             padding: 0.5rem 0.75rem;
-            background-color: #44abc3;
+            background-color: #57606f;
             margin-right: 1rem;
             border-radius: 0.25rem;
             color: white;
             font-size: 1rem;
             cursor: pointer;
+            border: 1px solid grey;
         }
 
         button:hover {
             background-color: #368ea2;
         }
+
+        .actions {
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            top:0px;
+        }
+
+        .actions li {
+            cursor: pointer;
+            display: inline-block;
+        }
+        .actions li img {
+            padding: 5px;
+            border-radius: 20px;
+            border: 1px solid black;
+        }
+        .actions li img:hover {
+            background-color: rgb(201, 199, 199);
+        }
+        
+
+        #date {
+            font-size: 13px;
+            display: block;
+            margin-bottom: 15px;
+            width: 300px;
+            padding-bottom: 10px;
+            border-bottom: 1px dotted grey;
+        }
+
+        #title {
+            margin-bottom: 0px;
+            font-size: 2rem;
+            font-weight: 100;
+            margin-bottom: 20px;
+        }
+
+        #editor {
+            display:none;
+            position: absolute;
+            left:0px;
+            overflow: hidden;
+        }
+
+        #editor button {
+            margin-top: 50px;
+           background-color: rgb(59, 22, 163);
+           padding: 5px 20px;
+           height: 40px;
+            border-radius: 100px;
+            border: 0;
+        }
+
+        #editor button:hover {
+            background-color: rgb(58, 0, 216);
+        }
+
+        #editor input {
+            /*width: 90%;*/
+        }
+
+
     </style>
